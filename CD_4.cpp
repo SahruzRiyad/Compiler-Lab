@@ -25,7 +25,7 @@ int Operator(char ch){
 
 int main(){
     int i , j , len , index;
-    string str , ans , tmp;
+    string str , ans;
     cin>>str;
     len = str.size();
     ans = "E";
@@ -41,7 +41,7 @@ int main(){
         }
     }
     
-    for(i = 0 ; i < ans.size() ; i++){
+    for(i = ans.size() - 1; i >= 0 ; i--){
         if(ans[i] == 'E'){
             ans[i] = str[i];
             cout<<ans<<endl;
