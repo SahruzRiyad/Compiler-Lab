@@ -61,20 +61,21 @@ int main(){
             cout<<"Binary Variable"<<endl;
         else if(len >= 2 && isBinary() && str[0] == '0')
             cout<<"Binary Number"<<endl;
+        else if(isFloat() == 2)
+            cout<<"Float Number"<<endl;
+        else if(isFloat() >= 3)
+            cout<<"Double Number"<<endl; 
         else if(!is_valid(0,len-1))
             cout<<"Undefined"<<endl;
-        else if((str[0]>='i' && str[0]<='n') || (str[0]>'I' && str[0]<='N'))
+        else if((str[0]>='i' && str[0]<='n') || (str[0]>='I' && str[0]<='N'))
             cout<<"Integer variable"<<endl;
-        else if(str.size()<= 4 && is_allDigit() && (str[0]>='1' && str[0]<='9'))
+        else if(len <= 4 && is_allDigit() && (str[0]>='1' && str[0]<='9'))
             cout<<"ShortInt Number"<<endl;
         else if(is_allDigit() && (str[0]>='1' && str[0]<='9'))
             cout<<"LongInt Number"<<endl;
         else if((str[0]>='a'&&str[0]<='h')||(str[0]>='A'&&str[0]<='H')||(str[0]>='o'&&str[0]<='z')||(str[0]>='O'&&str[0]<='Z'))
             cout<<"Float Variable"<<endl;
-        else if(isFloat() == 2)
-            cout<<"Float Number"<<endl;
-        else if(isFloat() >= 3)
-            cout<<"Double Number"<<endl; 
+        
         else 
             cout<<"Invalid Input"<<endl;
         
