@@ -2,7 +2,7 @@
 #include <string.h>
 
 int isValidDelimiter(char ch) {
-    if (ch == ' ' || ch == '+' || ch == '-' || ch == '*' ||
+    if (ch == ' ' || ch == '+'  || ch == '*' ||
     ch == '/' || ch == ',' || ch == ';' || ch == '>' ||
     ch == '<' || ch == '=' || ch == '(' || ch == ')' ||
     ch == '[' || ch == ']' || ch == '{' || ch == '}')
@@ -125,11 +125,12 @@ void eNo(char str[]){
     }
     vowel[vw] = '\0';
     for(i = 0 ; i < k ; i++){
-        if(!isVowel(str[v[i]])){
+        if(!isVowel(str[v[i]]) && !isValidDigits(str[v[i]])){
             consonant[cs++] = str[v[i]];
             j = v[i] + 1;
-            while(j < len && str[j] != ' ')
+            while(j < len && !isValidDelimiter(str[j]))
                 consonant[cs++] = str[j++];
+            consonant[cs++] = ' ';
             
         }
     }
