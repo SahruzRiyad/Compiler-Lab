@@ -3,10 +3,11 @@ using namespace std;
 
 /*  Here 
     E' = R
-    ε = #
+    epsilon = #
     T' = Y
-    id = i
+    id = i                            
 */
+
 string grammar[] = {"E->TR","R->+TR","T->FY","Y->*FY","F->(E)","R->#","Y->#","F->i"};
 string FIRST[] = {"i(","+","i(","*","(","#","#","i"};
 string FOLLOW[10];
@@ -29,8 +30,10 @@ string calc_FirstFollow(char ch , int c1 , int c2){
                     
                     if(grammar[c1][c2+1] == '\0')
                         ans += FOLLOW[c1];
-                    else 
+                    else if(grammar[c1][c2+1] < 'A' || grammar[c1][c2+1] > 'Z')
                         ans += grammar[c1][c2+1];
+                    else 
+                        ans += calc_FirstFollow(grammar[c1][c2+2],c1,c2+1);
                 }
             }
         }
@@ -112,7 +115,7 @@ void calc_LLParsingTable(){
                 terminal.push_back(FIRST[i][j]);
             mark[FIRST[i][j]] = 1;
         }
-        for(j = 0 ; j < FIRST[i].size() ; j++){
+        for(j = 0 ; j < FOLLOW[i].size() ; j++){
             if(!mark[FOLLOW[i][j]])
                 terminal.push_back(FOLLOW[i][j]);
             mark[FOLLOW[i][j]] = 1;
@@ -146,7 +149,7 @@ void calc_LLParsingTable(){
             for(int k = 0 ; k < table[ter].size() ; k++){
                 if(table[ter][k][0] == ch){
                     cpy_str(table[ter][k]);
-                    table[ter][k][0] = '-';
+                    //table[ter][k][0] = '-';
                     goto br;
                     
                 }
@@ -164,6 +167,5 @@ int main(){
   
     calc_FOLLOW();
     calc_LLParsingTable();
-    
     return 0;
 }
